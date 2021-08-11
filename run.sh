@@ -10,6 +10,6 @@ docker run --rm \
        --env="DISPLAY" \
        --env="QT_X11_NO_MITSHM=1" \
        --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-       # -it iory/jsk-recognition:melodic /bin/bash
-       -it utarom/jsk_recognition:melodic /bin/bash
+       --volume="$(pwd)/docker_bind:/mnt" \
+       -it utarom/jsk_recognition:latest /bin/bash
 xhost +local:docker

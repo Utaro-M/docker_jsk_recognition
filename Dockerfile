@@ -41,7 +41,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBIAN_FRONTEND teletype
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
     && apt-add-repository https://packages.microsoft.com/ubuntu/18.04/prod && apt update
-RUN apt update && apt install -y vim
+RUN apt update && apt install -y vim byobu emacs
 
 ######### INSTALL ROS START ############
 # install packages
@@ -89,9 +89,11 @@ RUN pip install -U pip \
 
 WORKDIR ${WORKSPACE}
 RUN git clone https://github.com/jsk-ros-pkg/jsk_recognition ${WORKSPACE}/src/jsk_recognition
+RUN git clone https://github.com/Utaro-M/memorization.git ${WORKSPACE}/src/memorization
 RUN rosdep install --from-paths -i -r -y src
 RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash; catkin build jsk_perception -DCMAKE_BUILD_TYPE=Release
+RUN catkin build memorization
 RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
 
 # nvidia-container-runtime

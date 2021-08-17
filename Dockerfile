@@ -92,7 +92,7 @@ RUN git clone https://github.com/jsk-ros-pkg/jsk_recognition ${WORKSPACE}/src/js
 RUN git clone https://github.com/Utaro-M/memorization.git ${WORKSPACE}/src/memorization
 RUN rosdep install --from-paths -i -r -y src
 RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
-RUN source /opt/ros/${ROS_DISTRO}/setup.bash; catkin build jsk_perception -DCMAKE_BUILD_TYPE=Release
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash; catkin build jsk_perception jsk_pcl_ros -DCMAKE_BUILD_TYPE=Release
 RUN catkin build memorization
 RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
 

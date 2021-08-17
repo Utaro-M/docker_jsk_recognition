@@ -2,5 +2,5 @@
 
 DOCKER_BUILDKIT=1 docker build \
        --network=host \
-       -t utarom/jsk_recognition:latest \
+       -t utarom/jsk_recognition:buildall \
        .

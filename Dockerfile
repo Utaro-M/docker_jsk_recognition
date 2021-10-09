@@ -89,7 +89,7 @@ RUN pip install -U pip \
 
 WORKDIR ${WORKSPACE}
 RUN git clone https://github.com/jsk-ros-pkg/jsk_recognition ${WORKSPACE}/src/jsk_recognition
-RUN git clone https://github.com/Utaro-M/memorization.git ${WORKSPACE}/src/memorization
+RUN git clone https://github.com/Utaro-M/memorization.git -b publish_memory ${WORKSPACE}/src/memorization
 RUN rosdep install --from-paths -i -r -y src
 RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash; catkin build jsk_perception jsk_pcl_ros -DCMAKE_BUILD_TYPE=Release
